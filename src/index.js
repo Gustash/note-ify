@@ -4,6 +4,7 @@ import App from './components/App';
 
 import storeFactory from './redux/store';
 import { addNote, removeNote} from './redux/actions';
+import { Provider } from 'react-redux';
 
 let state = {
     notes: [
@@ -14,15 +15,9 @@ let state = {
 
 const store = storeFactory(state);
 
-store.dispatch(
-    addNote("This is another one I added!")
-);
-
-store.dispatch(
-    removeNote(0)
-);
-
 render(
-    <App notes={store.getState().notes} />, 
+    (<Provider store={store}>
+        <App />
+    </Provider>),
     document.getElementById('react-container')
 );

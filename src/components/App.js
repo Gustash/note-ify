@@ -3,7 +3,26 @@ import NewNoteForm from './NewNoteForm';
 import { Col } from 'react-bootstrap';
 import NoteList from './NoteList';
 
-export default class App extends Component {
+import { connect } from 'react-redux';
+import { addNote } from '../redux/actions';
+
+const mapStateToProps = (state) => (
+    {
+        notes: state.notes
+    }    
+);
+
+const mapDispatchToProps = (dispatch) => (
+    {
+        onNewNote(note) {
+            dispatch(
+                addNote(note)
+            );
+        }
+    }
+);
+
+class App extends Component {
     render() {
         return (
             <Col sm={8} smOffset={2}>
@@ -13,3 +32,5 @@ export default class App extends Component {
         );
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
