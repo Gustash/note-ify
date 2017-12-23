@@ -6,14 +6,23 @@ import storeFactory from './redux/store';
 import { addNote, removeNote} from './redux/actions';
 import { Provider } from 'react-redux';
 
-let state = {
-    notes: [
-        "This is the first note",
-        "This is the second one"
-    ]
-};
+import './stylesheets/styles.css';
 
-const store = storeFactory(state);
+const initialState = (localStorage.getItem('state') ?
+    JSON.parse(localStorage.getItem('state')) :
+    {
+        notes: [
+            "You don't have any notes. Note down using the form above!"
+        ]
+    }
+);
+
+const saveState = () => {
+    localStorage.setItem('state', JSON.stringify(store.getState()))
+}
+
+const store = storeFactory(initialState);
+store.subscribe(saveState);
 
 render(
     (<Provider store={store}>

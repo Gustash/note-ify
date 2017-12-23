@@ -1,13 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Jumbotron, Col, Button, InputGroup, FormControl } from 'react-bootstrap';
 
-const NewNoteForm = (onNewNote=f=>f) => {
+import { connect } from 'react-redux';
+import { addNote } from '../redux/actions';
+
+const mapDispatchToProps = (dispatch) => (
+    {
+        onNewNote(note) {
+            dispatch(
+                addNote(note)
+            );
+        }
+    }
+);
+
+const NewNoteForm = ({ onNewNote=f=>f }) => {
     const sidePadding = { paddingLeft: '16px', paddingRight: '16px' };
 
     let _note;
 
     const submit = (e) => {
         e.preventDefault();
+        console.log(_note.value);
         onNewNote(_note.value);
         _note.value = '';
     }
@@ -17,7 +31,7 @@ const NewNoteForm = (onNewNote=f=>f) => {
             <Jumbotron style={sidePadding}>
                 <h2>Take that note boii</h2>
                 <InputGroup>
-                    <FormControl ref={input => _note = input} type="text" />
+                    <FormControl inputRef={input => _note = input} type="text" />
                     <InputGroup.Button>
                         <Button type="submit" bsStyle="primary">Note down!</Button>
                     </InputGroup.Button>
@@ -27,4 +41,4 @@ const NewNoteForm = (onNewNote=f=>f) => {
     );
 }
 
-export default NewNoteForm
+export default connect(null, mapDispatchToProps)(NewNoteForm);
