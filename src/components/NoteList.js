@@ -11,8 +11,8 @@ const mapStateToProps = (state) => (
 
 const NoteList = (props) => {
     return (
-        <ul>
-            { props.notes.map((note, i) => <Note key={i} note={note} />) }
+        <ul className="note-list">
+            { props.notes.map((note, i) => <Note key={i} note={note} index={i} />) }
         </ul>
     );
 }

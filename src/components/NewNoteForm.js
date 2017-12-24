@@ -21,7 +21,6 @@ const NewNoteForm = ({ onNewNote=f=>f }) => {
 
     const submit = (e) => {
         e.preventDefault();
-        console.log(_note.value);
         onNewNote(_note.value);
         _note.value = '';
     }
