@@ -1,5 +1,6 @@
 import React from 'react';
 import { Jumbotron, Col, Button, InputGroup, FormControl } from 'react-bootstrap';
+import Save from 'react-icons/lib/md/save';
 
 import { connect } from 'react-redux';
 import { addNote } from '../redux/actions';
@@ -32,7 +33,7 @@ const NewNoteForm = ({ onNewNote=f=>f }) => {
                 <InputGroup>
                     <FormControl inputRef={input => _note = input} type="text" />
                     <InputGroup.Button>
-                        <Button type="submit" bsStyle="primary">Note down!</Button>
+                        <Button type="submit" bsStyle="primary"><Save /></Button>
                     </InputGroup.Button>
                 </InputGroup>
             </Jumbotron>

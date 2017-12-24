@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
+import Delete from 'react-icons/lib/md/delete';
 
 import { connect } from 'react-redux';
 import { removeNote } from '../redux/actions';
@@ -22,7 +23,7 @@ const Note = ({ note="", index=-1, onRemoveNote=f=>f }) => {
     return (
         <li className="note-item">
             { note }
-            <Button className="pull-right" onClick={() => removeNote(index)}>Delete</Button>
+            <Button className="pull-right" onClick={() => removeNote(index)}><Delete /></Button>
         </li>
     );
 }
